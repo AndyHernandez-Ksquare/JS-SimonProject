@@ -16,24 +16,12 @@ const buttons = document.querySelectorAll(".quadrant");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const choosenColor = button.id;
-    // console.log({ choosenColor });
     inputPattern.push(choosenColor);
     animatePress(choosenColor);
     checkAnswer(inputPattern.length - 1);
+    playSound(choosenColor);
   });
 });
-
-// const checkAnswer = (currentLevel) => {
-//   if (pattern[currentLevel] === inputPattern[currentLevel]) {
-//     if (inputPattern.length === pattern.length) {
-//       setTimeout(() => {
-//         nextSequence();
-//       }, 1000);
-//     }
-//   } else {
-//     startOver();
-//   }
-// };
 
 const checkAnswer = (currentLevel) => {
   if (pattern[currentLevel] === inputPattern[currentLevel]) {
@@ -44,6 +32,7 @@ const checkAnswer = (currentLevel) => {
           setTimeout(() => {
             const button = document.querySelector(`#${pattern[i]}`);
             button.classList.add("active");
+            playSound(pattern[i]);
             setTimeout(() => {
               button.classList.remove("active");
             }, 100);
@@ -59,6 +48,11 @@ const checkAnswer = (currentLevel) => {
   }
 };
 
+const playSound = (name) => {
+  const audio = new Audio(`sounds/${name}.mp3`);
+  audio.play();
+};
+
 const nextSequence = () => {
   inputPattern = [];
   level++;
@@ -68,6 +62,7 @@ const nextSequence = () => {
 
   const button = document.querySelector(`#${randomColor}`);
   button.classList.add("active");
+  playSound(randomColor);
   setTimeout(() => {
     button.classList.remove("active");
   }, 100);
