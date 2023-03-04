@@ -3,12 +3,15 @@ const restartButton = document.querySelector(".start-over");
 const colors = ["red", "blue", "yellow", "green"];
 let pattern = [];
 let inputPattern = [];
-let level = 0;
+let level = 1;
 let wrongCounter = 0;
+let hardMode = false;
 let started = false;
 const wrongTracker = document.querySelector("#wrong-counter");
 const winText = document.querySelector(".newGame");
 const buttons = document.querySelectorAll(".quadrant");
+const hardModeButton = document.querySelector("#hard-mode"); // new button for hard mode
+const hardModeText = document.querySelector("#hard-mode-advice");
 
 startButton.addEventListener("click", () => {
   if (!started) {
@@ -33,6 +36,17 @@ buttons.forEach((button) => {
     checkAnswer(inputPattern.length - 1);
     playSound(chosenColor);
   });
+});
+// toggle hard mode button event listener
+hardModeButton.addEventListener("click", () => {
+  hardMode = !hardMode; // toggle the hardMode variable
+  hardModeButton.textContent = !hardMode ? "Easy Mode" : "Hard Mode"; // change button text content
+  if (hardMode) {
+    hardModeText.textContent = "Watch out, hard mode is on!";
+  } else {
+    hardModeText.textContent = "You are playing on easy mode";
+  }
+  startOver(); // start over the game with the new mode
 });
 
 const checkAnswer = (currentLevel) => {
@@ -62,6 +76,10 @@ const checkAnswer = (currentLevel) => {
       }, 1000);
     }
   } else {
+    // If hardMode active restart the game
+    if (hardMode) {
+      startOver();
+    }
     inputPattern = [];
     wrongCounter++;
     wrongTracker.textContent = `Wrong responses: ${wrongCounter}`;
@@ -122,13 +140,14 @@ const animatePress = (currentColor) => {
   }, 100);
 };
 const startOver = () => {
-  level = 0;
+  level = 1;
   inputPattern = [];
   wrongCounter = 0;
   pattern = [];
   started = false;
   winText.textContent = "Follow the pattern";
   toggleButtonActivity(false);
+  document.querySelector("#steps").textContent = `Steps: 1`;
 
   wrongTracker.textContent = "Wrong responses: 0"; // reset the text content
   nextSequence();
