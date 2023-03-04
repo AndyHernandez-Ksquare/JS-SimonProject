@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Simon project</title>
-    <!-- As a user, I need to see an interface resembling the Simon Says game with 4 quadrants each with differents colors and they should be clickable,
-         this needs to be perfectly centered and have enough space between each quadrant. -->
+    <!-- As a user, I need to see a button properly placed so I can start a match -->
   </head>
   <body>
-    <section class="quadrant-container">
+    <section class="content-container">
       <section>
         <button style="background-color: red" class="quadrant"></button
         ><button style="background-color: blue" class="quadrant"></button>
@@ -18,6 +17,9 @@
       <section>
         <button style="background-color: yellow" class="quadrant"></button
         ><button style="background-color: green" class="quadrant"></button>
+      </section>
+      <section class="buttons-container">
+        <button class="start-game">Start</button>
       </section>
     </section>
     <script src="index.js"></script>

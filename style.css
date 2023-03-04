@@ -1,4 +1,4 @@
-.quadrant-container {
+.content-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,4 +11,16 @@
   width: 10rem;
   height: 10rem;
   margin-left: 1rem;
+}
+
+/*///////////////// Buttons ////////////////////*/
+.buttons-container {
+  display: flex;
+}
+
+.start-game {
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+  color: white;
+  background-color: black;
 }
