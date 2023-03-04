@@ -34,6 +34,11 @@
   border-color: red;
 }
 
+.newGame {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 /*///////////////// Buttons ////////////////////*/
 
 .game-button {
