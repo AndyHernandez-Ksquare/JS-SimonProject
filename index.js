@@ -10,6 +10,7 @@ startButton.addEventListener("click", () => {
   if (!started) {
     nextSequence();
     started = true;
+  } else {
   }
 });
 
@@ -74,7 +75,7 @@ const playSound = (name) => {
 };
 
 const nextSequence = () => {
-  document.querySelector("#level").textContent = level;
+  document.querySelector("#steps").textContent = `Steps: ${level}`;
   inputPattern = [];
   level++;
   const randomNumber = Math.floor(Math.random() * 4);
@@ -96,7 +97,6 @@ const animatePress = (currentColor) => {
     button.classList.remove("active");
   }, 100);
 };
-
 const startOver = () => {
   level = 0;
   pattern = [];
