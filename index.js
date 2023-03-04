@@ -3,6 +3,7 @@ const colors = ["red", "blue", "yellow", "green"];
 let pattern = [];
 let inputPattern = [];
 let level = 1;
+let wrongCounter = 0;
 let started = false;
 
 startButton.addEventListener("click", () => {
@@ -45,7 +46,14 @@ const checkAnswer = (currentLevel) => {
     }
   } else {
     inputPattern = [];
+    wrongCounter++;
+    let wrongTracker = document.querySelector("#wrong-counter");
+    wrongTracker.textContent = `Wrong responses: ${wrongCounter}`;
+    wrongTracker.classList.add("wrong");
+
     setTimeout(() => {
+      wrongTracker.classList.remove("wrong");
+
       for (let i = 0; i < pattern.length; i++) {
         setTimeout(() => {
           const button = document.querySelector(`#${pattern[i]}`);
@@ -91,6 +99,6 @@ const animatePress = (currentColor) => {
 
 const startOver = () => {
   level = 0;
-  pattern = pattern.pop();
+  pattern = [];
   started = false;
 };

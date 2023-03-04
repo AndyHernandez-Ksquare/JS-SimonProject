@@ -29,6 +29,11 @@
   background-color: white;
 }
 
+.wrong {
+  border: 5px solid black;
+  border-color: red;
+}
+
 /*///////////////// Buttons ////////////////////*/
 .buttons-container {
   display: flex;
