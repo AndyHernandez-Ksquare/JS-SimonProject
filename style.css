@@ -13,6 +13,22 @@
   margin-left: 1rem;
 }
 
+.blue {
+  background-color: blue;
+}
+.red {
+  background-color: red;
+}
+.yellow {
+  background-color: yellow;
+}
+.green {
+  background-color: green;
+}
+.active {
+  background-color: white;
+}
+
 /*///////////////// Buttons ////////////////////*/
 .buttons-container {
   display: flex;

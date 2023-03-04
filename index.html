@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Simon project</title>
-    <!-- As a user, I need to see a button properly placed so I can start a match -->
+    <!-- As a user, after I press start game, I need to be presented with a series of randoms input (only 1 at the start) 
+        if I input the pattern correctly it needs to repeat over again but with 1 additional step. -->
   </head>
   <body>
     <section class="content-container">
       <section>
-        <button style="background-color: red" class="quadrant"></button
-        ><button style="background-color: blue" class="quadrant"></button>
+        <button id="red" class="quadrant red"></button
+        ><button id="blue" class="quadrant blue"></button>
       </section>
       <section>
-        <button style="background-color: yellow" class="quadrant"></button
-        ><button style="background-color: green" class="quadrant"></button>
+        <button id="yellow" class="quadrant yellow"></button
+        ><button id="green" class="quadrant green"></button>
       </section>
       <section class="buttons-container">
         <button class="start-game">Start</button>
