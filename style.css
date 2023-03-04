@@ -35,13 +35,17 @@
 }
 
 /*///////////////// Buttons ////////////////////*/
+
+.game-button {
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+}
 .buttons-container {
   display: flex;
+  gap: 1rem;
 }
 
 .start-game {
-  padding: 0.5rem 2rem;
-  font-weight: 600;
   color: white;
   background-color: black;
 }

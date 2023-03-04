@@ -1,19 +1,22 @@
 const startButton = document.querySelector(".start-game");
+const restartButton = document.querySelector(".start-over");
 const colors = ["red", "blue", "yellow", "green"];
 let pattern = [];
 let inputPattern = [];
 let level = 1;
 let wrongCounter = 0;
 let started = false;
+const wrongTracker = document.querySelector("#wrong-counter");
 
 startButton.addEventListener("click", () => {
   if (!started) {
     nextSequence();
     started = true;
   } else {
+    return;
   }
 });
-
+restartButton.addEventListener("click", () => startOver());
 const buttons = document.querySelectorAll(".quadrant");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -48,7 +51,6 @@ const checkAnswer = (currentLevel) => {
   } else {
     inputPattern = [];
     wrongCounter++;
-    let wrongTracker = document.querySelector("#wrong-counter");
     wrongTracker.textContent = `Wrong responses: ${wrongCounter}`;
     wrongTracker.classList.add("wrong");
 
@@ -98,7 +100,11 @@ const animatePress = (currentColor) => {
   }, 100);
 };
 const startOver = () => {
-  level = 0;
+  level = 1;
+  inputPattern = [];
+  wrongCounter = 0;
   pattern = [];
   started = false;
+  wrongTracker.textContent = "Wrong responses: 0"; // reset the text content
+  nextSequence();
 };
