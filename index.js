@@ -2,7 +2,7 @@ const startButton = document.querySelector(".start-game");
 const colors = ["red", "blue", "yellow", "green"];
 let pattern = [];
 let inputPattern = [];
-let level = 0;
+let level = 1;
 let started = false;
 
 startButton.addEventListener("click", () => {
@@ -44,7 +44,19 @@ const checkAnswer = (currentLevel) => {
       }, 1000);
     }
   } else {
-    startOver();
+    inputPattern = [];
+    setTimeout(() => {
+      for (let i = 0; i < pattern.length; i++) {
+        setTimeout(() => {
+          const button = document.querySelector(`#${pattern[i]}`);
+          button.classList.add("active");
+          playSound(pattern[i]);
+          setTimeout(() => {
+            button.classList.remove("active");
+          }, 100);
+        }, 500 * i);
+      }
+    }, 1000);
   }
 };
 
@@ -54,6 +66,7 @@ const playSound = (name) => {
 };
 
 const nextSequence = () => {
+  document.querySelector("#level").textContent = level;
   inputPattern = [];
   level++;
   const randomNumber = Math.floor(Math.random() * 4);
@@ -78,6 +91,6 @@ const animatePress = (currentColor) => {
 
 const startOver = () => {
   level = 0;
-  pattern = [];
+  pattern = pattern.pop();
   started = false;
 };
