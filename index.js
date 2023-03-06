@@ -1,3 +1,4 @@
+// Declare important variables
 const startButton = document.querySelector(".start-game");
 const restartButton = document.querySelector(".start-over");
 const colors = ["red", "blue", "yellow", "green"];
@@ -7,12 +8,15 @@ let level = 1;
 let wrongCounter = 0;
 let hardMode = false;
 let started = false;
+
+// Selecting elements from the DOM to update during the game
 const wrongTracker = document.querySelector("#wrong-counter");
 const winText = document.querySelector(".newGame");
 const buttons = document.querySelectorAll(".quadrant");
 const hardModeButton = document.querySelector("#hard-mode"); // new button for hard mode
 const hardModeText = document.querySelector("#hard-mode-advice");
 
+// Add an event listener to startButton that runs nextSequence() function
 startButton.addEventListener("click", () => {
   if (!started) {
     nextSequence();
@@ -24,10 +28,12 @@ startButton.addEventListener("click", () => {
   }
 });
 
+// Add an event listener to restartButton that runs startOver() function
 restartButton.addEventListener("click", () => {
   startOver();
 });
 
+// Event listener for buttons representing game colors
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const chosenColor = button.id;
@@ -37,7 +43,8 @@ buttons.forEach((button) => {
     playSound(chosenColor);
   });
 });
-// toggle hard mode button event listener
+
+// Event listener for hard mode button
 hardModeButton.addEventListener("click", () => {
   hardMode = !hardMode; // toggle the hardMode variable
   hardModeButton.textContent = !hardMode ? "Easy Mode" : "Hard Mode"; // change button text content
@@ -49,6 +56,7 @@ hardModeButton.addEventListener("click", () => {
   startOver(); // start over the game with the new mode
 });
 
+// Function to check if the user input is correct
 const checkAnswer = (currentLevel) => {
   if (pattern[currentLevel] === inputPattern[currentLevel]) {
     if (inputPattern.length === pattern.length) {
@@ -105,11 +113,13 @@ const checkAnswer = (currentLevel) => {
   }
 };
 
+// Play the corresponding sound
 const playSound = (name) => {
   const audio = new Audio(`sounds/${name}.mp3`);
   audio.play();
 };
 
+// Generate the next color in the pattern and animates the corresponding button
 const nextSequence = () => {
   inputPattern = [];
   const randomNumber = Math.floor(Math.random() * 4);
@@ -123,6 +133,7 @@ const nextSequence = () => {
     button.classList.remove("active");
   }, 100);
 
+  // If the player reaches level 20, he wins
   if (level === 20) {
     winText.textContent = "Congrats! Press this text to start a new game";
     toggleButtonActivity(true);
@@ -132,6 +143,7 @@ const nextSequence = () => {
   }
 };
 
+// Animates buttons
 const animatePress = (currentColor) => {
   const button = document.querySelector(`#${currentColor}`);
   button.classList.add("active");
@@ -139,6 +151,7 @@ const animatePress = (currentColor) => {
     button.classList.remove("active");
   }, 100);
 };
+// R  esets all game variables
 const startOver = () => {
   level = 1;
   inputPattern = [];
@@ -153,6 +166,7 @@ const startOver = () => {
   nextSequence();
 };
 
+// Used to activate or desactivate buttons
 const toggleButtonActivity = (activity) => {
   const colors = document.querySelectorAll(".quadrant");
   colors.forEach((button) => {
